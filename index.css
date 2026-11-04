@@ -1,0 +1,10 @@
+@tailwind base;@tailwind components;@tailwind utilities;
+body{@apply bg-ground text-slate-900 font-sans antialiased}
+.btn{@apply inline-flex min-h-[44px] items-center justify-center gap-2 rounded-xl px-5 font-bold transition active:scale-95}
+.btn-cta{@apply btn bg-gold text-slate-900 hover:bg-gold-dark}
+.btn-brand{@apply btn bg-brand text-white}
+.btn-ghost{@apply btn border border-brand text-brand bg-white}
+.chip{@apply inline-flex min-h-[44px] items-center whitespace-nowrap rounded-full border border-slate-300 bg-white px-4 text-sm}
+.tag{@apply rounded bg-slate-900/80 px-2 py-0.5 text-[11px] font-bold uppercase text-white}
+@keyframes pop{50%{transform:scale(1.35)}}.pop{animation:pop .3s}
+@keyframes sk{50%{opacity:.5}}.sk{animation:sk 1.2s infinite;@apply bg-slate-200 rounded-xl}
