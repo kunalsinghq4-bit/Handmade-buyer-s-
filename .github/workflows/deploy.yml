@@ -1,0 +1,34 @@
+name: Deploy to GitHub Pages
+on:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+    steps:
+      - uses: actions/checkout@v4
+      - name: Arrange files into folders
+        run: |
+          mkdir -p src/config src/data src/store src/components src/features
+          mv main.jsx index.css src/
+          mv pricing.js src/config/
+          mv mock.js src/data/
+          mv useApp.js src/store/
+          mv Img.jsx Shell.jsx Card.jsx src/components/
+          mv Onboarding.jsx Home.jsx Search.jsx Store.jsx Product.jsx Cart.jsx TryOn.jsx Chat.jsx Orders.jsx Premium.jsx Profile.jsx src/features/
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm install && npm run build
+        env:
+          VITE_UNSPLASH_KEY: ${{ secrets.VITE_UNSPLASH_KEY }}
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+      - uses: actions/deploy-pages@v4
